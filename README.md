@@ -1,3 +1,8 @@
+临时搓的 flarum2 的语言包，用来过渡使用。不会更新语言文本。  
+鸣谢：https://github.com/vadkuz/flarum2-russian-langpack
+
+---
+
 # Flarum 简体中文语言包 / Flarum Simplified Chinese Language Pack (Flarum 2.x)
  [![GitHub license](https://img.shields.io/github/license/flarum-lang/chinese-simplified?color=%230172b2)](https://github.com/flarum-lang/chinese-simplified/blob/master/LICENSE) [![Latest Stable Version](https://img.shields.io/packagist/v/flarum-lang/chinese-simplified.svg)](https://packagist.org/packages/flarum-lang/chinese-simplified) ![Packagist](https://img.shields.io/packagist/dt/flarum-lang/chinese-simplified)
 
