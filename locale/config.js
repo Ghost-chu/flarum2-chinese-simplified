@@ -1,5 +1,40 @@
 // https://github.com/iamkun/dayjs/blob/v1.9.7/src/locale/zh-cn.js
 
+// Workaround for Flarum v2.0.0-beta.6:
+// Locale JS (forum-zh-Hans.js / admin-zh-Hans.js) can execute before `app.load()` sets the
+// translator locale. In that case, translations get registered under the old
+// locale bucket (usually `en`), and then discarded when `setLocale('zh-Hans')` runs.
+// We infer the intended locale from the script filename and copy translations
+// into that bucket so they survive `setLocale`.
+;(() => {
+  try {
+    if (!globalThis.app?.translator?.formatter?.setup) return;
+
+    const src = document.currentScript?.src || '';
+    const m = src.match(/\/(?:admin|forum)-([a-z0-9-]+)\.js\b/i);
+    if (!m) return;
+
+    const intended = m[1];
+    const current = app.translator.getLocale?.();
+
+    if (!current || current === intended) return;
+
+    const setup = app.translator.formatter.setup();
+    const translations = setup.translations || {};
+
+    const currentBucket = translations[current] || {};
+    const intendedBucket = translations[intended] || {};
+
+    app.translator.formatter.setup({
+      translations: Object.assign({}, translations, {
+        [intended]: Object.assign({}, intendedBucket, currentBucket),
+      }),
+    });
+  } catch (e) {
+    // Intentionally ignore; this file must never break page rendering.
+  }
+})();
+
 dayjs.locale(
   {
     name: "zh-cn",

@@ -24,13 +24,18 @@
     "forum": "https://discuss.flarum.org/d/22690"
   },
   "require": {
-    "flarum/core": "^1.0.0"
+    "flarum/core": "^2.0.0-beta.6"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "replace": {
     "littlegolden/flarum-lang-simplified-chinese": "*",
     "ffans/lang-simplified-chinese": "*"
   },
   "extra": {
+    "branch-alias": {
+      "dev-main": "2.x-dev"
+    },
     "flarum-extension": {
       "title": "简体中文",
       "category": "language",
